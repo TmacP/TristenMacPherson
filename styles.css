@@ -50,3 +50,13 @@ h2 {
 #contact p {
     margin-bottom: 10px;
 }
+
+button {
+    background-color: #3873B3;
+    color: #ddddddff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
