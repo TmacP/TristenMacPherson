@@ -1,3 +1,11 @@
+/* CSS HEX 
+--ucla-blue: #3873b3ff;
+--silver-lake-blue: #5485bbff;
+--powder-blue: #a4bedbff;
+--silver: #b9b9b9ff;
+--dim-gray: #737373ff;
+--platinum: #ddddddff; */
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -8,8 +16,8 @@ body {
 }
 
 header {
-    background-color: #3873B3;
-    color: #A4BEDB;
+    background-color: #a4bedbff;
+    color: #3873B3;
     text-align: center;
     padding: 20px;
 }
