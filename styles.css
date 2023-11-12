@@ -3,13 +3,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f4f4f4;
+    background-color: #DDDDDD;
     color: #333;
 }
 
 header {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #3873B3;
+    color: #A4BEDB;
     text-align: center;
     padding: 20px;
 }
@@ -26,13 +26,13 @@ section {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #A4BEDB;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #007BFF;
+    color: #5485BB;
 }
 
 .project {
