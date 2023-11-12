@@ -12,19 +12,18 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: #DDDDDD;
-    color: #737373ff;
+    color: #333;
 }
 
 header {
-    background-color: #a4bedbff;
-    color: #3873B3;
+    background-color: #3873B3;
+    color: #A4BEDB;
     text-align: center;
     padding: 20px;
 }
 
 h1 {
     margin: 0;
-    color: #3873B3;
 }
 
 p {
@@ -35,7 +34,7 @@ section {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #3873B3;
+    background-color: #A4BEDB;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
