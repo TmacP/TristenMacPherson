@@ -51,7 +51,7 @@ h2 {
     margin-bottom: 10px;
 }
 
-button {
+button, a {
     background-color: #3873B3;
     color: #ddddddff;
     border: none;

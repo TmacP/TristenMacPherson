@@ -45,3 +45,18 @@ nextButton.addEventListener("click", nextPortfolio);
 
 // Initialize the iframe and description with the first portfolio item
 updatePortfolio();
+
+// Function to show/hide the portfolio iframe
+function togglePortfolioIframe() {
+    const portfolioIframe = document.getElementById("portfolio-iframe");
+
+    if (portfolioIframe.style.display === 'none') {
+        portfolioIframe.style.display = 'block';
+    } else {
+        portfolioIframe.style.display = 'none';
+    }
+}
+
+// Add a click event listener to the "Toggle Portfolio Iframe" button
+const toggleIframeButton = document.getElementById("toggle-iframe-button");
+toggleIframeButton.addEventListener("click", togglePortfolioIframe);
