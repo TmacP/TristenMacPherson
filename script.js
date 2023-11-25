@@ -13,7 +13,7 @@ const portfolioItems = [
         description: "We are currently responsible for maintaining and updating these pages.",
     },
     {
-        url: "https://infinite-abyss-crossing-of-worlds-underwater.pages.dev",
+        url: "https://infinite-abyss.pages.dev",
         description: "A prototype of a game built for cmpt306. Mouse to shoot, and WASD to move.",
     }
 
