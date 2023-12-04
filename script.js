@@ -2,19 +2,19 @@
 const portfolioItems = [
     {
         url: "https://pagecake.pages.dev",
-        description: "A small webdesign company I started. Currently we consist of 2 people, Myself and our designer.",
+        description: "A small webdesign company I started.",
     },
     {
         url: "https://beatburritochef.ca",
-        description: "A page we built for a local producer to connect their social media accounts.",
+        description: "A page built for a local producer to connect their social media accounts.",
     },
     {
         url: "https://cst.cs.usask.ca",
-        description: "We are currently responsible for maintaining and updating these pages.",
+        description: "Am currently responsible for maintaining and updating this site as part of my executive member role.",
     },
     {
         url: "https://infinite-abyss.pages.dev",
-        description: "A prototype of a game built for cmpt306. Mouse to shoot, and WASD to move.",
+        description: "A Unity game built for cmpt306 with a team of 6.",
     }
 
     // Add more portfolio items with URLs and descriptions here
