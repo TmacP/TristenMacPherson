@@ -14,7 +14,7 @@ const portfolioItems = [
     },
     {
         url: "https://infinite-abyss.pages.dev",
-        description: "A Unity game built for cmpt306 with a team of 6.",
+        description: "A Unity game built for cmpt306 with a team of 7.",
     }
 
     // Add more portfolio items with URLs and descriptions here
