@@ -18,15 +18,13 @@
         <p>I'm on the third day of porting InfiniteAbyss to Defold from Unity.
             I decided to start a Devlog to keep track of my progress and to share my experiences doing so.
             So far, I've been able to get the player to swim up and down and face left and right.
-
-        <pre class="line-numbers"><code class="language-lua">-- player.script
-
+        </p>
+        <img src="./in.gif" alt="Character moves up and down, faces left and right." width="200" height="auto">
+        <pre class="line-numbers"><code class="language-lua">
+-- player.script
 local speed = 280      -- Adjust the speed as needed
 local gravity = -90    -- Adjust the gravity as needed
 local swimHeight = 125   -- The max height one touch can swim up
-
--- debug
-local debugMode = false
 
 function init(self)
     msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
@@ -40,19 +38,6 @@ function on_input(self, action_id, action)
             self.is_touched = true
             -- Save the initial touch position for comparison
             self.touchStartPosition = action.x
-
-            -- DEBUG
-            -- Print the touch coordinates
-            if debugMode then print("Touch coordinates: x=" .. action.x) end
-            -- Print the coordinates of the player game object
-            if debugMode then print("Player coordinates: x=" .. go.get_position().x) end
-            -- Print direction
-            if debugMode then
-                local touchDirection = (action.x < go.get_position().x) and "Left of player" or "Right of player"
-                print("Touch is " .. touchDirection)
-            end
-            -- DEBUG end
-
             -- Flip the sprite horizontal based on touch
             local bee_position = go.get_position()
             if action.x < bee_position.x then
@@ -79,9 +64,8 @@ function update(self, dt)
         go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + deltaY, 0))
         self.currentHeight = self.currentHeight + deltaY
     end
-                end</code></pre>
-        </p>
-        <img src="./in.gif" alt="Character moves up and down, faces left and right.">
+end
+        </code></pre>
     </section>
 
     <section id="back-to-blog">
