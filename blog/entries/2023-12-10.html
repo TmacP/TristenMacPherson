@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../prism.css">
+    <script src="../prism.js"></script>
+    <title>Dev Log</title>
+</head>
+<body>
+    <header>
+        <h1>Handling Collision</h1>
+        <p>Published on: <time datetime="2023-12-10">December 10, 2023</time></p>
+    </header>
+
+    <section id="content">
+        <p>I'm on the third day of porting InfiniteAbyss to Defold from Unity.
+            I decided to start a Devlog to keep track of my progress and to share my experiences doing so.
+            So far, I've been able to get the player to swim up and down and face left and right.
+
+        <pre class="line-numbers"><code class="language-lua">-- player.script
+
+local speed = 280      -- Adjust the speed as needed
+local gravity = -90    -- Adjust the gravity as needed
+local swimHeight = 125   -- The max height one touch can swim up
+
+-- debug
+local debugMode = false
+
+function init(self)
+    msg.post(".", "acquire_input_focus")  -- Acquire input focus for the script
+    self.currentHeight = 0  -- Initialize the current height
+end
+
+function on_input(self, action_id, action)
+    if action_id == hash("touch") then
+        if action.pressed then
+            -- When the screen is touched, set a flag to move the player up
+            self.is_touched = true
+            -- Save the initial touch position for comparison
+            self.touchStartPosition = action.x
+
+            -- DEBUG
+            -- Print the touch coordinates
+            if debugMode then print("Touch coordinates: x=" .. action.x) end
+            -- Print the coordinates of the player game object
+            if debugMode then print("Player coordinates: x=" .. go.get_position().x) end
+            -- Print direction
+            if debugMode then
+                local touchDirection = (action.x < go.get_position().x) and "Left of player" or "Right of player"
+                print("Touch is " .. touchDirection)
+            end
+            -- DEBUG end
+
+            -- Flip the sprite horizontal based on touch
+            local bee_position = go.get_position()
+            if action.x < bee_position.x then
+                sprite.set_hflip("#sprite", true)
+            else
+                sprite.set_hflip("#sprite", false)
+            end
+        elseif action.released then
+            -- When the touch is released, set the flag to false and reset current height
+            self.is_touched = false
+            self.currentHeight = 0
+            self.touchStartPosition = nil
+        end
+    end
+end
+
+function update(self, dt)
+    -- Apply gravity continuously to make the player sink when not touched
+    go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + gravity * dt, 0))
+
+    -- Move the player up if the touch flag is true and the current height is below swimHeight
+    if self.is_touched and self.currentHeight < swimHeight then
+        local deltaY = math.min(speed * dt, swimHeight - self.currentHeight)
+        go.set_position(vmath.vector3(go.get_position().x, go.get_position().y + deltaY, 0))
+        self.currentHeight = self.currentHeight + deltaY
+    end
+                end</code></pre>
+        </p>
+        <img src="./in.gif" alt="Character moves up and down, faces left and right.">
+    </section>
+
+    <section id="back-to-blog">
+        <a href="../../blog/blog-index.html">Back to blog index</a>
+    </section>
+
+    <footer>
+        <p>Author: Tristen MacPherson</p>
+    </footer>
+</body>
+</html>
