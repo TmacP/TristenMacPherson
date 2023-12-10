@@ -60,3 +60,8 @@ button, a {
     font-size: 1em;
     cursor: pointer;
 }
+
+#devlog-entries a {
+    display: grid;
+    padding: 10px;
+}
