@@ -15,7 +15,7 @@
     </header>
 
     <section id="content">
-        <p>I'm on the third day of porting InfiniteAbyss to Defold from Unity. Today I'm working on collision. 
+        <p>I'm on the third day of porting InfiniteAbyss to Defold from Unity. Today I'm working on collision, movement, and the level generation. 
             I added a vector in the init for collision to correct the player</p>
         <pre class="line-numbers"><code class="language-lua">
 -- player.script
@@ -70,10 +70,72 @@ function on_message(self, message_id, message, sender)
 	end
 end
                     </code></pre>
-                    <p>And voila just like that we now have collision</p>
+                    <p>We have to set up the player collisionobject to Kinematic, and the level collisionobject to Static. And voila, just like that, we now have collision.</p>
                     <img src="./2023-12-10.gif" alt="Character collides with tilemap." width="300" height="auto">
 
 
+                    <p> 
+                        Next we want to make our player move left and right.
+                         We add a local variable to say how far the player can swim left and right.
+                          then in the init we initialize the current width to zero and the direction the player is facing to zero.
+                           This is so we know what direction to move the player and how far they can move.
+                    </p>
+                    <pre class="line-numbers"><code class="language-lua">
+-- player.script
+
+local swimWidth = 125
+
+function init(self)
+    -- code omitted for brevity
+    self.currentWidth = 0 -- Initialize the current width
+    self.facing = 0 -- direction player is facing 0 is right 1 is left
+    -- code omitted for brevity
+end
+                    </code></pre>
+                    <p> 
+                        In the update function we check if the player is touching the screen and if they are we move them in the direction they are facing.
+                    </p>
+                    <pre class="line-numbers"><code class="language-lua">
+function update(self, dt)
+    -- code omitted for brevity
+	-- move the player in the direction they are facing
+	if self.is_touched and self.facing == 1 then
+		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
+		go.set_position(vmath.vector3(go.get_position().x - deltaX, go.get_position().y, 0))
+		self.currentWidth = self.currentWidth - deltaX
+	elseif self.is_touched and self.facing == 0 then
+		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
+		go.set_position(vmath.vector3(go.get_position().x + deltaX, go.get_position().y, 0))
+		self.currentWidth = self.currentWidth + deltaX
+	end
+    -- code omitted for brevity
+end
+                    </code></pre>
+                    <p> 
+                        In the on_input function we add some logic to keep track of the direction the player is facing. At the end we reset the current width and the direction the player is facing.
+                    </p>
+                    <pre class="line-numbers"><code class="language-lua">
+function on_input(self, action_id, action)
+    if action_id == hash("touch") then
+        if action.pressed then
+        -- code omitted for brevity
+            local position = go.get_position()
+            if action.x < position.x then
+                self.facing = 1
+            else
+                self.facing = 0
+            end
+            
+        elseif action.released then
+        -- code omitted for brevity
+            self.currentWidth = 0
+            self.touchDirection = nil
+        end
+    end
+end
+</code></pre>
+<p>And now our player can swim left and right. We are going to refine the movement so it plays better, but for now this will allow us to test moving around the level.</p>
+<img src="./2023-12-10-1.gif" alt="Character moves left and right." width="300" height="auto">
 
     </section>
 
