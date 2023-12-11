@@ -99,11 +99,11 @@ end
 function update(self, dt)
     -- code omitted for brevity
 	-- move the player in the direction they are facing
-	if self.is_touched and self.facing == 1 then
+	if self.is_touched and self.facing == 1  and self.currentWidth < swimWidth then
 		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
 		go.set_position(vmath.vector3(go.get_position().x - deltaX, go.get_position().y, 0))
-		self.currentWidth = self.currentWidth - deltaX
-	elseif self.is_touched and self.facing == 0 then
+		self.currentWidth = self.currentWidth + deltaX
+	elseif self.is_touched and self.facing == 0 and self.currentWidth < swimWidth then
 		local deltaX = math.min(speed * dt, swimWidth - self.currentWidth)
 		go.set_position(vmath.vector3(go.get_position().x + deltaX, go.get_position().y, 0))
 		self.currentWidth = self.currentWidth + deltaX
