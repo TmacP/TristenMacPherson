@@ -134,8 +134,70 @@ function on_input(self, action_id, action)
     end
 end
 </code></pre>
-<p>And now our player can swim left and right. We are going to refine the movement so it plays better, but for now this will allow us to test moving around the level.</p>
+<p>And now our player can swim left and right. 
+    We are going to refine the movement so it plays better, but for now this will allow us to test moving around the level.</p>
 <img src="./2023-12-10-1.gif" alt="Character moves left and right." width="300" height="auto">
+
+<!-- Camera follows player-->
+<p> Now we want our camera to follow the player. 
+    Although we could just make a camera and attach it to our player,
+     we are going to use a library to make things a little easier.
+    We are going to use the Orthographic library created by Björn Ritzl.
+     https://github.com/britzl/defold-orthographic
+</p>
+<img src="./2023-12-10.png" alt="Character moves left and right." width="300" height="auto">
+<p>We added the camera to our main collection. The touch is still buggy since it is using the coordinates from the screen instead of the world, but this library will let us fix that easy.
+    We also started working on the level generation. Right now we are just figuring out how to get the bounds of the tilemap and use that to make two walls.
+</p>
+<pre class="line-numbers"><code class="language-lua">
+-- Map.script
+local debugMode = true
+
+if debugMode then print("Map Debug") end
+
+-- Load tile source and set it to a tile map
+go.property("my_tile_source", resource.tile_source("/Terrain/Level.tilesource"))
+
+function init(self)
+    if debugMode then print(("Tile Source Path: %s"):format(self.my_tile_source)) end
+    go.set("#Level", "tile_source", self.my_tile_source)
+
+    -- Assuming the tilemap is named "Level"
+    local url = "#Level"
+
+    -- Get the bounds of the tilemap
+    local tilemap = tilemap  -- Add this line
+    local x, y, width, height = tilemap.get_bounds(url)
+
+    -- Print the bounds
+    if debugMode then print(("Tilemap Bounds - X: %d, Y: %d, Width: %d, Height: %d"):format(x, y, width, height)) end
+
+    -- get the tile nu.
+    local tileno = tilemap.get_tile(url, "layer1", x, y)
+    if debugMode then print(("Get tile - , tileno: %d"):format(tileno)) end
+
+    -- set the tile to that num
+    --tilemap.set_tile(url,"layer1",x,y,1)
+
+    -- Set all tiles to a specific tile index (1 in this case)
+    for i = x, 100 do
+        tilemap.set_tile(url, "layer1", x, i, 1)
+        if debugMode then print(("set tile for left side - x: %d, y: %d"):format(x, i)) end
+
+        i = i + 1
+    end
+    -- Set all tiles to a specific tile index (1 in this case)
+    for i = x, 100 do
+        tilemap.set_tile(url, "layer1", width-1, i, 1)
+        if debugMode then print(("set tile for right side - x: %d, y: %d"):format(width-1, i)) end
+        i = i + 1
+    end
+
+    
+end    
+</code></pre>
+<p>Here you can see the camera following the player, as well as the walls be generated with our Map.script</p>
+<img src="./2023-12-10-2.gif" alt="Camera follows character moves left and right." width="300" height="auto">
 
     </section>
 

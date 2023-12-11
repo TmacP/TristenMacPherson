@@ -51,7 +51,7 @@ h2 {
     margin-bottom: 10px;
 }
 
-button, a {
+button, a{
     background-color: #3873B3;
     color: #ddddddff;
     border: none;
@@ -61,7 +61,7 @@ button, a {
     cursor: pointer;
 }
 
-#devlog-entries a {
+#devlog-entries a{
     display: grid;
     padding: 10px;
 }
