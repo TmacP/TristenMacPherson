@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../prism.css">
+    <script src="../prism.js"></script>
+    <title>Dev Log</title>
+</head>
+<body>
+    <header>
+        <h1>New art and movement</h1>
+        <p>Published on: <time datetime="2023-12-15">December 15, 2023</time></p>
+    </header>
+
+<section id="content">
+
+<p>I'm back for an update on the development so far. I decided to change up the artwork to a seahorse sprite I created and 
+    a asset pack from https://ansimuz.itch.io/underwater-diving. I built a test level out to work out the game mechanics. 
+    I also rewrote the player.script so movement is more like swimming. I am having some trouble with the pixels tearing 
+    but I'm sure there is a way to fix that issue. Here is what the new script looks like.
+</p>
+
+<pre class="line-numbers"><code class="language-lua">
+-- player.script
+
+local swim_speed = 200   -- Adjust the swim speed as needed
+local swim_duration = 0.01 -- Adjust the swim duration in seconds
+local deceleration_factor = 1.50 -- Adjust the deceleration factor as needed
+local gravity = -50 -- Adjust the gravity as needed
+
+-- Declare center_x and center_y in the global scope
+local center_x, center_y
+
+function init(self)
+    msg.post(".", "acquire_input_focus")
+    self.velocity = vmath.vector3()
+    self.facing = 0
+
+    -- Additional variables for swim behavior
+    self.is_swimming = false
+    self.swim_timer = 0
+    self.deceleration_factor = 0
+    self.correction = vmath.vector3()  -- Initialize correction vector
+
+    -- Initialize center_x and center_y
+    local screen_width = (sys.get_config("display.width") / 2)
+    center_x = screen_width
+    center_y = sys.get_config("display.height") / 2
+end
+
+function update(self, dt)
+    -- Update swim timer
+    if self.is_swimming then
+        self.swim_timer = self.swim_timer - dt
+    end
+
+    if self.swim_timer <= 0 then
+        self.is_swimming = false
+        -- Smoothly decrease velocity using deceleration factor
+        self.velocity = self.velocity * (1 - deceleration_factor * dt)
+    end
+
+    -- Apply gravity
+    self.velocity.y = self.velocity.y + gravity * dt
+    
+    -- Move the player based on swim input and acceleration
+    local dv = self.velocity * dt
+    local p = go.get_position()
+    go.set_position(p + dv)
+
+
+    -- reset correction
+    self.correction = vmath.vector3()
+    
+end
+
+function on_input(self, action_id, action)
+    if action_id == hash("touch") then
+        if action.pressed then
+            print("touch")
+            -- Calculate the angle between touch position and center of the screen
+            local touch_angle = math.atan2(action.y - center_y, action.x - center_x)
+
+            -- Set the velocity based on touch angle
+            self.velocity.x = math.cos(touch_angle) * swim_speed
+            self.velocity.y = math.sin(touch_angle) * swim_speed
+
+            -- Flip the sprite horizontal based on touch
+            sprite.set_hflip("#sprite", action.x < center_x)
+
+            -- Start swimming
+            self.is_swimming = true
+            self.swim_timer = swim_duration
+        end
+    end
+end
+
+function on_message(self, message_id, message, sender)
+    if message_id == hash("contact_point_response") then
+        if message.distance > 0 then
+            local proj = vmath.project(self.correction, message.normal * message.distance)
+            if proj < 1 then
+                local comp = (message.distance - message.distance * proj) * message.normal
+                go.set_position(go.get_position() + comp)
+                self.correction = self.correction + comp
+            end
+        end
+    end
+end
+
+</code></pre>
+<p>All of that together looks like this.</p>
+                    <img src="./2023-12-15.gif" alt="New look" width="512" height="auto">
+
+    </section>
+
+    <section id="back-to-blog">
+        <a href="../../blog/blog-index.html">Back to blog index</a>
+    </section>
+</body>
+</html>
