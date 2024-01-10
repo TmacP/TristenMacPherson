@@ -15,8 +15,11 @@ const portfolioItems = [
     {
         url: "https://infiniteabyss.pages.dev/",
         description: "This project is my first time using Defold. I created it so I could test out how Defold compares to Unity. This is a work in progress still in the prototype phase. The intention is to be a single player, pixel art, 2d underwater platformer. It is based off of the game Infinite Abyss I was part of the team which developed for Computer Science 306 at the University of Saskatchewan.",
-    }
-
+    },
+    {
+        url: "https://discarded-whisker.pages.dev/",
+        description: "This project was created so I could experiment with using Defold. This is a work in progress which is still very early in the prototype phase(right now you, and the ai, can only place a card, and end your turn.). The intention is to be a single player, pixel art, card collecting game.",
+    },
     // Add more portfolio items with URLs and descriptions here
 ];
 
