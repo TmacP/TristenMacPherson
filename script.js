@@ -2,19 +2,19 @@
 const portfolioItems = [
     {
         url: "https://beatburritochef.ca",
-        description: "Links to my music production socials",
+        description: "Landing page, for links, to my music production. Check out my music on Spotify, and Apple Music to listen to my work with Fearsome Lee; or check out my other socials to hear some less developed ideas I post for amusement.",
     },
     {
         url: "https://cst.cs.usask.ca",
-        description: "Am currently responsible for maintaining and updating this site as part of my executive member role.",
+        description: "Currently responsible for maintaining and updating this site as part of my dutys as executive member of the Usask Cyber Security Team.",
     },
     {
         url: "https://infinite-abyss.pages.dev",
-        description: "A Unity game built by a team of 7 for Computer Science 306 at the University of Saskatchewan.",
+        description: "A Unity game built by our team of 7 for Computer Science 306 at the University of Saskatchewan. I was in charge of the audio design, and did a large amount of the programming, game design, and playtesting. I also assumed a portion of the project management role.",
     },
     {
         url: "https://infiniteabyss.pages.dev/",
-        description: "This project is my first time using Defold. I created it so I could test out how Defold compares to Unity. This is a work in progress still in the prototype phase. The intention is to be a single player, pixel art, 2d underwater platformer. It is based off of the game Infinite Abyss I was part of the team which developed for Computer Science 306 at the University of Saskatchewan.",
+        description: "This project is my first time using Defold. I created it so I could test out how Defold compares to Unity. This is a work in progress still in the prototype phase. The intention is to be a single player, pixel art, 2d underwater platformer. It is based off of the game Infinite Abyss for Computer Science 306 at the University of Saskatchewan.",
     },
     {
         url: "https://discarded-whisker.pages.dev/",
