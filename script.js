@@ -1,12 +1,8 @@
 // Define an array of portfolio site URLs and descriptions
 const portfolioItems = [
     {
-        url: "https://pagecake.pages.dev",
-        description: "A small webdesign company I started.",
-    },
-    {
         url: "https://beatburritochef.ca",
-        description: "A page built for a local producer to connect their social media accounts.",
+        description: "Links to my music production socials",
     },
     {
         url: "https://cst.cs.usask.ca",
@@ -14,7 +10,11 @@ const portfolioItems = [
     },
     {
         url: "https://infinite-abyss.pages.dev",
-        description: "A Unity game built for cmpt306 with a team of 7.",
+        description: "A Unity game built by a team of 7 for Computer Science 306 at the University of Saskatchewan.",
+    },
+    {
+        url: "https://infiniteabyss.pages.dev/",
+        description: "This project is my first time using Defold. I created it so I could test out how Defold compares to Unity. This is a work in progress still in the prototype phase. The intention is to be a single player, pixel art, 2d underwater platformer. It is based off of the game Infinite Abyss I was part of the team which developed for Computer Science 306 at the University of Saskatchewan.",
     }
 
     // Add more portfolio items with URLs and descriptions here
