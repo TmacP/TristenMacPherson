@@ -5,10 +5,6 @@ const portfolioItems = [
         description: "Landing page, for links, to my music production. Check out my music on Spotify, and Apple Music to listen to my work with Fearsome Lee; or check out my other socials to hear some less developed ideas I post for amusement. You can also play a basic version of Snake I implemented in JavaScript for fun.",
     },
     {
-        url: "https://cst.cs.usask.ca",
-        description: "Currently responsible for maintaining and updating this site as part of my dutys as executive member of the Usask Cyber Security Team.",
-    },
-    {
         url: "https://infinite-abyss.pages.dev",
         description: "A Unity game built by our team of 7 for Computer Science 306 at the University of Saskatchewan. I was in charge of the audio design, and did a large amount of the programming, game design, and playtesting. I also assumed a portion of the project management role.",
     },
