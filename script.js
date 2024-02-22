@@ -2,11 +2,7 @@
 const portfolioItems = [
     {
         url: "https://beatburritochef.ca",
-        description: "Landing page, for links, to my music production. Check out my music on Spotify, and Apple Music to listen to my work with Fearsome Lee; or check out my other socials to hear some less developed ideas I post for amusement. You can also play a basic version of Snake I implemented in JavaScript for fun.",
-    },
-    {
-        url: "https://cst.cs.usask.ca",
-        description: "Currently responsible for maintaining and updating this site as part of my dutys as executive member of the Usask Cyber Security Team.",
+        description: "Links to my music production. Check out my music!.",
     },
     {
         url: "https://infinite-abyss.pages.dev",
@@ -14,11 +10,11 @@ const portfolioItems = [
     },
     {
         url: "https://infiniteabyss.pages.dev/",
-        description: "This project is my first time using Defold. I created it so I could test out how Defold compares to Unity. This is a work in progress still in the prototype phase. The intention is to be a single player, pixel art, 2d underwater platformer. It is based off of the game Infinite Abyss for Computer Science 306 at the University of Saskatchewan. Click the screen to move, and travel through the pipes on the sides of the map.",
+        description: "This project is so I could test out how Defold compares to Unity. Click the screen to move, and travel through the pipes on the sides of the map.",
     },
     {
         url: "https://discarded-whisker.pages.dev/",
-        description: "This project was created so I could experiment with using Defold. This is a work in progress which is still very early in the prototype phase(right now you, and the ai, can only place a card, and end your turn.). The intention is to be a single player, pixel art, card collecting game.",
+        description: "This project was created to experiment with using Defold. The intention is to be a single player, pixel art, card collecting game.",
     },
     // Add more portfolio items with URLs and descriptions here
 ];
